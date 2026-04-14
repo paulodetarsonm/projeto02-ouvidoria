@@ -61,6 +61,65 @@ def quantidade_reclamacoes(conexao):
 
   print("Total de reclamações:", total[0][0])
 
+#  MENU PRINCIPAL 
+
+def menu():
+
+    host = os.getenv("DB_HOST")
+    user = os.getenv("DB_USER")
+    password = os.getenv("DB_PASS")
+    bd_name = os.getenv("DB_NAME")
+    conexao = criarConexao(host, user, password, bd_name)
+
+    if conexao is None:
+        print("Não foi possível iniciar o sistema.")
+        return
+
+    inicializarTabela(conexao)
+
+    opcao = 0
+    while opcao != 7:
+
+        print("\n--- SISTEMA DE OUVIDORIA ---")
+        print("1 - Registrar reclamação")
+        print("2 - Listar reclamações")
+        print("3 - Pesquisar reclamação")
+        print("4 - Atualizar reclamação")
+        print("5 - Remover reclamação")
+        print("6 - Quantidade de reclamações")
+        print("7 - Sair")
+
+        opcao = int(input("Escolha uma opção: "))
+
+        if opcao == 1:
+            registrar_reclamacao(conexao)
+
+        elif opcao == 2:
+            listar_reclamacoes(conexao)
+
+        elif opcao == 3:
+            pesquisar_reclamacao(conexao)
+
+        elif opcao == 4:
+            atualizar_reclamacao(conexao)
+
+        elif opcao == 5:
+            remover_reclamacao(conexao)
+
+        elif opcao == 6:
+            quantidade_reclamacoes(conexao)
+
+        elif opcao == 7:
+            print("Saindo do sistema...")
+
+        else:
+            print("Opção inválida!")
+
+    encerrarConexao(conexao)
+
+
+menu()
+
 
 
 
