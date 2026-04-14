@@ -28,8 +28,11 @@ def inicializarTabela(conexao):
         conexao.commit()
         print("Tabela verificada/criada com sucesso!")
     except mysql.connector.Error as err:
+        print(f"Erro ao criar tabela: {err}")
+    finally:
+        cursor.close()
 
-        def encerrarConexao(conexao):
+def encerrarConexao(conexao):
     if conexao:
         conexao.close()
 
@@ -89,7 +92,3 @@ def excluirBancoDados(conexao, sql, dados):
     finally:
         cursor.close()
     return linhasAfetadas
-        print(f"Erro ao criar tabela: {err}")
-    finally:
-        cursor.close()
-
