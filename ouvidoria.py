@@ -19,6 +19,7 @@ def registrar_reclamacao(conexao):
         print(f"O código da sua reclamação é: {codigo}")
     else:
         print("Erro ao registrar reclamação.")
+        
 def listar_reclamacoes(conexao):
     sql = "SELECT codigo, nome, descricao FROM reclamacoes"
  reclamacoes = listarBancoDados(conexao, sql)
@@ -29,6 +30,7 @@ def listar_reclamacoes(conexao):
             print("\nCódigo:", r[0])
             print("Nome:", r[1])
             print("Descrição:", r[2])
+            
 def pesquisar_reclamacao(conexao):
     busca = int(input("Digite o código da reclamação: "))
  sql = "SELECT nome, descricao FROM reclamacoes WHERE codigo = %s"
@@ -38,6 +40,7 @@ def pesquisar_reclamacao(conexao):
         print("Descrição:", resultado[0][1])
     else:
         print("Reclamação não encontrada.")
+        
 def atualizar_reclamacao(conexao):
     busca = int(input("Digite o código da reclamação: "))
   nova = input("Digite a nova descrição: ")
@@ -47,6 +50,7 @@ def atualizar_reclamacao(conexao):
         print("Reclamação atualizada!")
     else:
         print("Reclamação não encontrada.")
+        
 def remover_reclamacao(conexao):
     busca = int(input("Digite o código da reclamação: "))
   sql = "DELETE FROM reclamacoes WHERE codigo = %s"
@@ -55,6 +59,7 @@ def remover_reclamacao(conexao):
         print("Reclamação removida!")
     else:
         print("Reclamação não encontrada.")
+        
 def quantidade_reclamacoes(conexao):
     sql = "SELECT COUNT(*) FROM reclamacoes"
     total = listarBancoDados(conexao, sql)
